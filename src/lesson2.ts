@@ -223,20 +223,88 @@ interface IPlace {
 // Subcategory
 // Brand
 
+
+interface IName{
+    tm: string;
+    ru: string;
+}
+
+interface ICategory {
+    name: IName;
+    image: string;
+}
+
+// Accessours - Watch / Headphones
+
+interface ISubCategory {
+    name: IName;
+    image: string;
+    category: ICategory;
+}
+
+type Gender = "male" | "female";
+type Region = "AG" | "MR" | "LB" | "DZ" | "BN";
+enum Size {
+    Small='s',
+    Medium='m',
+    Large='l'
+}
+
 interface IBrand {
     name: string;
     image: string;
-    description?: string;
 }
 
+
 interface IProduct {
-    name: string;
-    price: number;
+    id: number;
+    oldPrice?: number;// 1000  not undefined and >0
+    salePrice: number; // 500
+    name: IName;
+    desc?: string;
+    subCategory: ISubCategory;
+    gender?: Gender;
+    size: Size;
     brand: IBrand;
 }
 
 
 
+enum OrderStatus {
+    PENDING="PENDING", // new order
+    ACCEPTED="ACCEPTED", // kabul edildi
+    PROCCESSING="PROCCESSING", // tayyarlanyar
+    ON_THE_WAY="ONTHEWAY", // yolda
+    DELIVERED="DELIVERED", // eltip berildi
+    CANCELED="CANCELED", // customer ozi 
+    REJECTED="REJECTED" // addmin tarapyndan
+}
+
+interface ICustomer {
+    firstName: string;
+    lastName: string;
+    address: string;
+    phone: string;
+    region?: Region;
+}
+
+interface IOrder {
+    id: number;
+    customer: ICustomer;
+    products: IProduct[];
+    orderDate: Date;
+    status: OrderStatus;
+}
 
 
+let products: IProduct[];
+
+type Language = "ru" | "tm";
+
+
+let currentLanguage: Language='ru';
+
+// products.forEach((product) => {
+//    let name = product.name[currentLanguage];
+// })
 
