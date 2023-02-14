@@ -62,3 +62,4 @@ Axios2.Get('/posts')
     });
 })
     .catch(err => { console.log(err); });
+Axios2.POST('/posts');

@@ -129,5 +129,7 @@ Axios2.Get<IPost[]>('/posts')
 .catch(err => {console.log(err)})
 
 
+Axios2.POST('/posts')
+
 
 
